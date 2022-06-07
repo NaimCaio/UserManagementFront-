@@ -21,11 +21,10 @@ export class EditarUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     let id = +this.route.snapshot.params['id'];
-    this.usuario = this.usuarioService.buscarPorId(id);
-    var a = this.usuarioService.listarTodos();
-    console.log(this.usuario);
-    console.log(a);
-    console.log(id);
+    let getId = this.usuarioService.listarTodos().subscribe(r=>{
+      this.usuario=r['users'].find(usuario => usuario.id === id)
+    })
+    
   }
 
   atualizar(): void{

@@ -21,10 +21,12 @@ export class CadastrarUsuarioComponent implements OnInit {
   }
 
   cadastrar(): void{
-    console.log(this.usuario)
     if (this.formUsuario.form.valid){
       this.usuarioService.cadastrar(this.usuario);
-      this.router.navigate(["/usuarios"]);
+      this.usuarioService.listarTodos().subscribe(r=>{
+        this.router.navigate(["/usuarios"]);
+      });
+      
     }
   }
 
